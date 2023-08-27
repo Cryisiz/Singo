@@ -17,13 +17,15 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-
 		<dependency>
-			<groupId>com.navercorp.pinpoint</groupId>
-			<artifactId>pinpoint-postgresql-jdbc-driver-plugin</artifactId>
-			<version>2.5.2</version>
-		</dependency>
-
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+		<dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.data</groupId>
