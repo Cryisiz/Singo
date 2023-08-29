@@ -16,10 +16,6 @@
 **/docker-compose*
 **/compose*
 **/Dockerfile*
-**/node_modules
-**/npm-debug.log
-**/obj
-**/secrets.dev.yaml
-**/values.dev.yaml
+**/.github
 LICENSE
 README.md
