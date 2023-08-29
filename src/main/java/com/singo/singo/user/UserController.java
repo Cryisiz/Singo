@@ -3,22 +3,29 @@ package com.singo.singo.user;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/test")
+@RequestMapping("/user")
+@CrossOrigin
 public class UserController{
+    @Autowired
     private final UserService userService;
 
-    @Autowired
     public UserController(UserService userService){
         this.userService = userService;
     }
 
-    @GetMapping
-    public List<User> getAllUsers(){
-        return userService.getAllUsers();
+    //add new user
+    @PostMapping("/add")
+    public void addNewUser(@RequestBody User user) {
+        userService.addNewUser(user);
     }
+
+
 }

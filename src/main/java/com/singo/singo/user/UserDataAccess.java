@@ -16,31 +16,12 @@ public class UserDataAccess {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    List<User> selectAllUsers() {
-        String sql = "" +
-                "SELECT " +
-                "user_id, " +
-                " first_name, " +
-                " last_name, " +
-                " email " +
-                "FROM users";
-
-        return jdbcTemplate.query(sql, mapUserFromDb());
+    //add new user
+    void insertUser(User user){
+        String sql = "INSERT INTO USERS (first_name,last_name,email,password,role)"+
+                     "VALUES(?,?,?,?,?)";
+        jdbcTemplate.update(sql,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),user.getRole());
     }
 
-    private RowMapper<User> mapUserFromDb() {
-        return (resultSet, i) -> {
-            int id = resultSet.getInt("user_id");
-            String firstName = resultSet.getString("first_name");
-            String lastName = resultSet.getString("last_name");
-            String email = resultSet.getString("email");
-            return new User(
-                    id,
-                    firstName,
-                    lastName,
-                    email
-            );
-        };
-    }
-    
+
 }

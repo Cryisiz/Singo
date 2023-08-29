@@ -14,8 +14,11 @@ public class UserService {
     public UserService(UserDataAccess userDataAccess) {
         this.userDataAccess = userDataAccess;
     }
-
-    List<User> getAllUsers() {
-        return userDataAccess.selectAllUsers();
+    
+    //add new user
+    void addNewUser(User user) {
+        userDataAccess.insertUser(user);
     }
+
+
 }
