@@ -10,8 +10,11 @@ public class User {
     private String password;
     private String role;
 
+    public User(){
 
+    }
     public User(int id, String firstName, String lastName, String email, String password, String role) {
+
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,6 +27,12 @@ public class User {
      @JsonProperty("email") String email, @JsonProperty("password") String password, @JsonProperty("role") String role) {
     this.firstName = firstName;
     this.lastName = lastName;
+    this.email = email;
+    this.password = password;
+    this.role = role;
+    }
+
+    public User( String email, String password, String role) {
     this.email = email;
     this.password = password;
     this.role = role;
@@ -73,7 +82,7 @@ public class User {
         return this.role;
     }
 
-    public void setRole(String role) {
+    public void setRole( String role) {
         this.role = role;
     }
 

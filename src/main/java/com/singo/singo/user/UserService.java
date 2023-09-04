@@ -19,6 +19,10 @@ public class UserService {
     void addNewUser(User user) {
         userDataAccess.insertUser(user);
     }
-
-
+    
+    //check login
+    boolean checkLogin(User user) {
+        User userInfo = userDataAccess.getUser(user.getEmail());
+        return(userInfo.getPassword().equals(user.getPassword()) && userInfo.getRole().equals(user.getRole()));
+    }
 }
