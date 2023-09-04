@@ -1,11 +1,12 @@
 package com.singo.singo.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
-import java.util.List;
 
 @Repository
 public class UserDataAccess {
@@ -23,5 +24,9 @@ public class UserDataAccess {
         jdbcTemplate.update(sql,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),user.getRole());
     }
 
-
+    //get user
+    User getUser(String email){
+        String sql = "SELECT * FROM users where email = ?";
+        return jdbcTemplate.queryForObject(sql,new UserMapper(),new Object[]{email});
+    }
 }
