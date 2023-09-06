@@ -1,4 +1,4 @@
-package com.singo.singo;
+package com.singo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
