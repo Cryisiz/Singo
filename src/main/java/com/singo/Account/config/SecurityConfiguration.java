@@ -48,9 +48,10 @@ public class SecurityConfiguration {
         .disable()
         .authorizeHttpRequests()
         .requestMatchers(
-                "/auth/**"
-
-
+                "/auth/**",
+                "/hotelController/**",
+                "/restaurantController/**",
+                "/activitiesController/**"
         )
           .permitAll()
 
@@ -81,7 +82,7 @@ public class SecurityConfiguration {
         .authenticationProvider(authenticationProvider)
         .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
         .logout()
-        .logoutUrl("/api/v1/auth/logout")
+        .logoutUrl("/auth/logout")
         .addLogoutHandler(logoutHandler)
         .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
     ;
