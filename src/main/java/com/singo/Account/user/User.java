@@ -46,11 +46,6 @@ public class User implements UserDetails {
   }
 
   @Override
-  public String getPassword() {
-    return password;
-  }
-
-  @Override
   public String getUsername() {
     return email;
   }
@@ -74,4 +69,63 @@ public class User implements UserDetails {
   public boolean isEnabled() {
     return true;
   }
+
+
+  public User(Integer id, String firstname, String lastname, String email, String password, Role role) {
+    this.id = id;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.email = email;
+    this.password = password;
+    this.role = role;
+  }
+
+  public Integer getId() {
+    return this.id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public String getFirstname() {
+    return this.firstname;
+  }
+
+  public void setFirstname(String firstname) {
+    this.firstname = firstname;
+  }
+
+  public String getLastname() {
+    return this.lastname;
+  }
+
+  public void setLastname(String lastname) {
+    this.lastname = lastname;
+  }
+
+  public String getEmail() {
+    return this.email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPassword() {
+    return this.password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public Role getRole() {
+    return this.role;
+  }
+
+  public void setRole(Role role) {
+    this.role = role;
+  }
+
 }
