@@ -33,8 +33,11 @@ public class ActivitiesController {
     @PostMapping("/add")
     public void addActivitiesFile( @RequestParam("activitiesName")String activitiesName,@RequestParam("activitiesType") String activitiesType, 
     @RequestParam("activitiesLocation")String activitiesLocation, @RequestParam("activitiesPrice")String activitiesPrice,
-    @RequestParam("activitiesImage") MultipartFile file) throws IOException{
-           ActivitiesModel activities = new ActivitiesModel(activitiesName,activitiesType,activitiesLocation,Integer.parseInt(activitiesPrice));
+    @RequestParam("activitiesImage") MultipartFile file,@RequestParam("activitiesAddress") String activitiesAddress,
+    @RequestParam("activitiesDescription")String activitiesDescription,@RequestParam("activitiesPhone") String activitiesPhone,
+    @RequestParam("activitiesHours") String activitiesHours) throws IOException{
+           ActivitiesModel activities = new ActivitiesModel(activitiesName,activitiesType,activitiesLocation,Integer.parseInt(activitiesPrice),
+           activitiesAddress,activitiesDescription,activitiesPhone,activitiesHours);
         activitiesService.addActivitiesFile(activities,file);
     }
 
@@ -45,7 +48,7 @@ public class ActivitiesController {
       String fileUri = ServletUriComponentsBuilder
           .fromCurrentContextPath().path("/activitiesController/activitiesImage/").path(dbFile.getActivitiesName()).toUriString();
             return new ActivitiesModel(dbFile.getActivitiesId(),dbFile.getActivitiesName(),dbFile.getActivitiesType(),dbFile.getActivitiesLocation(),
-            dbFile.getActivitiesPrice(),fileUri);
+            dbFile.getActivitiesPrice(),fileUri,dbFile.getActivitiesAddress(),dbFile.getActivitiesDescription(),dbFile.getActivitiesPhone(),dbFile.getActivitiesHours());
     }).collect(Collectors.toList());
     return ResponseEntity.status(HttpStatus.OK).body(files);
     }

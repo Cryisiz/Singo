@@ -16,21 +16,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
-import static com.singo.Account.user.Permission.ADMIN_CREATE;
-import static com.singo.Account.user.Permission.ADMIN_DELETE;
-import static com.singo.Account.user.Permission.ADMIN_READ;
-import static com.singo.Account.user.Permission.ADMIN_UPDATE;
-import static com.singo.Account.user.Permission.MANAGER_CREATE;
-import static com.singo.Account.user.Permission.MANAGER_DELETE;
-import static com.singo.Account.user.Permission.MANAGER_READ;
-import static com.singo.Account.user.Permission.MANAGER_UPDATE;
-import static com.singo.Account.user.Role.ADMIN;
-import static com.singo.Account.user.Role.MANAGER;
-import static org.springframework.http.HttpMethod.DELETE;
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
-import static org.springframework.http.HttpMethod.PUT;
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -39,40 +24,20 @@ public class SecurityConfiguration {
 
   private final JwtAuthenticationFilter jwtAuthFilter;
   private final AuthenticationProvider authenticationProvider;
-  private final LogoutHandler logoutHandler;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http
+    http.cors().and()
         .csrf()
         .disable()
         .authorizeHttpRequests()
         .requestMatchers(
                 "/auth/**",
-                "/hotelController/**",
-                "/restaurantController/**",
-                "/activitiesController/**"
+                "/hotelController/hotelImage/**",
+                "/restaurantController/restaurantImage/**",
+                "/activitiesController/activitiesImage/**"
         )
           .permitAll()
-
-        /* 
-        .requestMatchers("/api/v1/management/**").hasAnyRole(ADMIN.name(), MANAGER.name())
-
-
-        .requestMatchers(GET, "/api/v1/management/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
-        .requestMatchers(POST, "/api/v1/management/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
-        .requestMatchers(PUT, "/api/v1/management/**").hasAnyAuthority(ADMIN_UPDATE.name(), MANAGER_UPDATE.name())
-        .requestMatchers(DELETE, "/api/v1/management/**").hasAnyAuthority(ADMIN_DELETE.name(), MANAGER_DELETE.name())
-
-
-        .requestMatchers("/api/v1/admin/**").hasRole(ADMIN.name())
-
-        .requestMatchers(GET, "/api/v1/admin/**").hasAuthority(ADMIN_READ.name())
-        .requestMatchers(POST, "/api/v1/admin/**").hasAuthority(ADMIN_CREATE.name())
-        .requestMatchers(PUT, "/api/v1/admin/**").hasAuthority(ADMIN_UPDATE.name())
-        .requestMatchers(DELETE, "/api/v1/admin/**").hasAuthority(ADMIN_DELETE.name())*/
-
-
         .anyRequest()
           .authenticated()
         .and()
@@ -80,13 +45,9 @@ public class SecurityConfiguration {
           .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
         .authenticationProvider(authenticationProvider)
-        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-        .logout()
-        .logoutUrl("/auth/logout")
-        .addLogoutHandler(logoutHandler)
-        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
-    ;
+        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class) ;
 
     return http.build();
   }
+  
 }
