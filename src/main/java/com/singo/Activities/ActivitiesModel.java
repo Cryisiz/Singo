@@ -43,9 +43,22 @@ public class ActivitiesModel {
         this.activitiesPhone = activitiesPhone;
         this.activitiesHours = activitiesHours;
     }
+        public ActivitiesModel(int activitiesId, String activitiesName, String activitiesType, String activitiesLocation, int activitiesPrice
+    ,String activitiesAddress,String activitiesDescription,String activitiesPhone,String activitiesHours) {
+        this.activitiesId = activitiesId;
+        this.activitiesName = activitiesName;
+        this.activitiesType = activitiesType;
+        this.activitiesLocation = activitiesLocation;
+        this.activitiesPrice = activitiesPrice;
+        this.activitiesAddress = activitiesAddress;
+        this.activitiesDescription = activitiesDescription;
+        this.activitiesPhone = activitiesPhone;
+        this.activitiesHours = activitiesHours;
+    }
 
     public ActivitiesModel( int activitiesId,String activitiesName, String activitiesType, String activitiesLocation, int activitiesPrice
     ,String activitiesUrl,String activitiesAddress,String activitiesDescription,String activitiesPhone,String activitiesHours) {
+        this.activitiesId = activitiesId;
         this.activitiesName = activitiesName;
         this.activitiesType = activitiesType;
         this.activitiesLocation = activitiesLocation;

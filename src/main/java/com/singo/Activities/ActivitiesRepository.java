@@ -22,6 +22,15 @@ public class ActivitiesRepository {
                     activities.getActivitiesDescription(),activities.getActivitiesPhone(),activities.getActivitiesHours());
     };
 
+    public void updateActivities(ActivitiesModel activities){
+        String sql = "UPDATE ACTIVITIES SET activities_name=?,activities_type=?,activities_location=?,activities_price=?,"+
+                    "activities_image=?,activities_address=?,activities_description=?,activities_phone=?,activities_hours=? "+
+                    "WHERE activities_id=?";
+                    jdbcTemplate.update(sql,activities.getActivitiesName(),activities.getActivitiesType(),activities.getActivitiesLocation(),
+                    activities.getActivitiesPrice(),activities.getActivitiesImage(),activities.getActivitiesAddress(),
+                    activities.getActivitiesDescription(),activities.getActivitiesPhone(),activities.getActivitiesHours(),activities.getActivitiesId());
+    };
+
     //GetAll
     public List<ActivitiesModel> selectAllActivities() {String sql = "SELECT * FROM ACTIVITIES";
         return jdbcTemplate.query(sql, mapActivities());

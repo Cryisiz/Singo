@@ -41,6 +41,18 @@ public class ActivitiesController {
         activitiesService.addActivitiesFile(activities,file);
     }
 
+        //Update Activities
+    @PostMapping("/update")
+    public void updateActivitiesFile(  @RequestParam("activitiesId")String activitiesId,@RequestParam("activitiesName")String activitiesName,@RequestParam("activitiesType") String activitiesType, 
+    @RequestParam("activitiesLocation")String activitiesLocation, @RequestParam("activitiesPrice")String activitiesPrice,
+    @RequestParam("activitiesImage") MultipartFile file,@RequestParam("activitiesAddress") String activitiesAddress,
+    @RequestParam("activitiesDescription")String activitiesDescription,@RequestParam("activitiesPhone") String activitiesPhone,
+    @RequestParam("activitiesHours") String activitiesHours) throws IOException{
+           ActivitiesModel activities = new ActivitiesModel(Integer.parseInt(activitiesId),activitiesName,activitiesType,activitiesLocation,Integer.parseInt(activitiesPrice),
+           activitiesAddress,activitiesDescription,activitiesPhone,activitiesHours);
+        activitiesService.updateActivitiesFile(activities,file);
+    }
+
     //get all Activities
     @GetMapping("/getAll")
     public ResponseEntity<List<ActivitiesModel>> getAllActivities(){
