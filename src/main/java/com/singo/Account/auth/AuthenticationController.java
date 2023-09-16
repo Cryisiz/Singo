@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.singo.Account.config.LogoutService;
 
 import java.io.IOException;
 
@@ -19,6 +22,7 @@ import java.io.IOException;
 public class AuthenticationController {
 
   private final AuthenticationService service;
+  private final LogoutService logoutService;
 
   @PostMapping("/register")
   public ResponseEntity<AuthenticationResponse> register(
@@ -40,6 +44,11 @@ public class AuthenticationController {
   ) throws IOException {
     service.refreshToken(request, response);
   }
+
+  @PostMapping("/logout")
+  public void performLogout( @RequestParam ("Authorization") String token ){
+    logoutService.logout(token);
+}
 
 
 }

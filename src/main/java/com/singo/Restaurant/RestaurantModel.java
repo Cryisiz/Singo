@@ -32,6 +32,7 @@ public class RestaurantModel {
     }
 
     public RestaurantModel( int restaurantId,String restaurantName, String restaurantType, String restaurantLocation, String restaurantPrice,String restaurantUrl) {
+         this.restaurantId = restaurantId;
         this.restaurantName = restaurantName;
         this.restaurantType = restaurantType;
         this.restaurantLocation = restaurantLocation;

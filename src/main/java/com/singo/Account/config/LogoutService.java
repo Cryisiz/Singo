@@ -1,32 +1,21 @@
 package com.singo.Account.config;
 
 import com.singo.Account.token.TokenRepository;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class LogoutService implements LogoutHandler {
+public class LogoutService  {
 
   private final TokenRepository tokenRepository;
-
-  @Override
-  public void logout(
-      HttpServletRequest request,
-      HttpServletResponse response,
-      Authentication authentication
-  ) {
-    final String authHeader = request.getHeader("Authorization");
-    final String jwt;
+  
+  public void logout(String authHeader) {
     if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
       return;
     }
-    jwt = authHeader.substring(7);
+    String jwt = authHeader.substring(7);
     var storedToken = tokenRepository.findByToken(jwt)
         .orElse(null);
     if (storedToken != null) {
@@ -34,6 +23,7 @@ public class LogoutService implements LogoutHandler {
       storedToken.setRevoked(true);
       tokenRepository.save(storedToken);
       SecurityContextHolder.clearContext();
+      System.out.println("hello");
     }
   }
 }

@@ -24,6 +24,15 @@ public class ActivitiesService {
         activitiesRepository.insertActivities(activities);
     }
 
+    //update Activities
+    public void updateActivitiesFile(ActivitiesModel activities,MultipartFile file)throws IOException{
+
+        //covert file to bytearr
+        byte[] image = file.getBytes();
+        activities.setActivitiesImage(image);
+        activitiesRepository.updateActivities(activities);
+    }
+
     //getAllActivities
     public Stream<ActivitiesModel> getAllActivities(){
         return activitiesRepository.selectAllActivities().stream();

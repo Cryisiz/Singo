@@ -14,10 +14,21 @@ public class ActivitiesRepository {
 
     //Insert
     public void insertActivities(ActivitiesModel activities){
-        String sql = "INSERT INTO ACTIVITIES(activities_name,activities_type,activities_location,activities_price,activities_image)"+
-                    "VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO ACTIVITIES(activities_name,activities_type,activities_location,activities_price,"+
+                    "activities_image,activities_address,activities_description,activities_phone,activities_hours)"+
+                    "VALUES(?,?,?,?,?,?,?,?,?)";
                     jdbcTemplate.update(sql,activities.getActivitiesName(),activities.getActivitiesType(),activities.getActivitiesLocation(),
-                    activities.getActivitiesPrice(),activities.getActivitiesImage());
+                    activities.getActivitiesPrice(),activities.getActivitiesImage(),activities.getActivitiesAddress(),
+                    activities.getActivitiesDescription(),activities.getActivitiesPhone(),activities.getActivitiesHours());
+    };
+
+    public void updateActivities(ActivitiesModel activities){
+        String sql = "UPDATE ACTIVITIES SET activities_name=?,activities_type=?,activities_location=?,activities_price=?,"+
+                    "activities_image=?,activities_address=?,activities_description=?,activities_phone=?,activities_hours=? "+
+                    "WHERE activities_id=?";
+                    jdbcTemplate.update(sql,activities.getActivitiesName(),activities.getActivitiesType(),activities.getActivitiesLocation(),
+                    activities.getActivitiesPrice(),activities.getActivitiesImage(),activities.getActivitiesAddress(),
+                    activities.getActivitiesDescription(),activities.getActivitiesPhone(),activities.getActivitiesHours(),activities.getActivitiesId());
     };
 
     //GetAll
@@ -40,7 +51,12 @@ public class ActivitiesRepository {
             String activitiesLocation = resultSet.getString("activities_location");
             int activitiesPrice = resultSet.getInt("activities_price");
             byte[] activitiesImage = resultSet.getBytes("activities_image");
-            return new ActivitiesModel(activitiesId,activitiesName, activitiesType, activitiesLocation, activitiesPrice,activitiesImage);
+            String activitiesAddress = resultSet.getString("activities_address");
+            String activitiesDescription = resultSet.getString("activities_Description");
+            String activitiesPhone = resultSet.getString("activities_Phone");
+            String activitiesHours = resultSet.getString("activities_hours");
+            return new ActivitiesModel(activitiesId,activitiesName, activitiesType, activitiesLocation, activitiesPrice,
+            activitiesImage,activitiesAddress,activitiesDescription,activitiesPhone,activitiesHours);
         };
     }
 }
