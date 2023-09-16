@@ -20,8 +20,9 @@ public class ActivitiesRepository {
                     jdbcTemplate.update(sql,activities.getActivitiesName(),activities.getActivitiesType(),activities.getActivitiesLocation(),
                     activities.getActivitiesPrice(),activities.getActivitiesImage(),activities.getActivitiesAddress(),
                     activities.getActivitiesDescription(),activities.getActivitiesPhone(),activities.getActivitiesHours());
-    };
+    }
 
+    //Update
     public void updateActivities(ActivitiesModel activities){
         String sql = "UPDATE ACTIVITIES SET activities_name=?,activities_type=?,activities_location=?,activities_price=?,"+
                     "activities_image=?,activities_address=?,activities_description=?,activities_phone=?,activities_hours=? "+
@@ -29,7 +30,13 @@ public class ActivitiesRepository {
                     jdbcTemplate.update(sql,activities.getActivitiesName(),activities.getActivitiesType(),activities.getActivitiesLocation(),
                     activities.getActivitiesPrice(),activities.getActivitiesImage(),activities.getActivitiesAddress(),
                     activities.getActivitiesDescription(),activities.getActivitiesPhone(),activities.getActivitiesHours(),activities.getActivitiesId());
-    };
+    }
+
+    //Delete
+    public void deleteActivities(int activitiesId){
+        String sql = "DELETE FROM ACTIVITIES WHERE activities_id = ?";
+        jdbcTemplate.update(sql,activitiesId);
+    }
 
     //GetAll
     public List<ActivitiesModel> selectAllActivities() {String sql = "SELECT * FROM ACTIVITIES";

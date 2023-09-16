@@ -33,6 +33,11 @@ public class ActivitiesService {
         activitiesRepository.updateActivities(activities);
     }
 
+    //Delete Activites
+    public void deleteActivities(int activitiesId){
+        activitiesRepository.deleteActivities(activitiesId);
+    }
+
     //getAllActivities
     public Stream<ActivitiesModel> getAllActivities(){
         return activitiesRepository.selectAllActivities().stream();

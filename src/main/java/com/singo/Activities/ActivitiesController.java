@@ -53,6 +53,12 @@ public class ActivitiesController {
         activitiesService.updateActivitiesFile(activities,file);
     }
 
+    //Delete Activities
+    @PostMapping("/delete")
+    public void deleteActvitiesFile(@RequestParam("activitiesId")String activitiesId){
+      activitiesService.deleteActivities(Integer.parseInt(activitiesId));
+    }
+
     //get all Activities
     @GetMapping("/getAll")
     public ResponseEntity<List<ActivitiesModel>> getAllActivities(){
