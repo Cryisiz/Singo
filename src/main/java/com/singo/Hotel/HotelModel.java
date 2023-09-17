@@ -32,6 +32,20 @@ public class HotelModel {
         this.hotelHours = hotelHours;
     }
 
+    
+    public HotelModel(int hotelId, String hotelName, int hotelStar, String hotelLocation, int hotelPrice,String hotelAddress,
+                        String hotelDescription,String hotelPhone,String hotelHours) {
+        this.hotelId = hotelId;
+        this.hotelName = hotelName;
+        this.hotelStar = hotelStar;
+        this.hotelLocation = hotelLocation;
+        this.hotelPrice = hotelPrice;
+        this.hotelAddress = hotelAddress;
+        this.hotelDescription = hotelDescription;
+        this.hotelPhone = hotelPhone;
+        this.hotelHours = hotelHours;
+    }
+
         public HotelModel(String hotelName, int hotelStar, String hotelLocation, int hotelPrice,String hotelAddress,
                         String hotelDescription,String hotelPhone,String hotelHours) {
         this.hotelName = hotelName;
