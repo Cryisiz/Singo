@@ -33,8 +33,11 @@ public class HotelController {
     @PostMapping("/add")
     public void addHotelFile( @RequestParam("hotelName")String hotelName,@RequestParam("hotelStar") int hotelStar, 
     @RequestParam("hotelLocation")String hotelLocation, @RequestParam("hotelPrice")String hotelPrice,
-    @RequestParam("hotelImage") MultipartFile file) throws IOException{
-           HotelModel hotel = new HotelModel(hotelName,hotelStar,hotelLocation,Integer.parseInt(hotelPrice));
+    @RequestParam("hotelImage") MultipartFile file,@RequestParam("hotelAddress") String hotelAddress,
+    @RequestParam("hotelDescription") String hotelDescription,@RequestParam("hotelPhone") String hotelPhone,
+    @RequestParam("hotelHours")String hotelHours) throws IOException{
+           HotelModel hotel = new HotelModel(hotelName,hotelStar,hotelLocation,Integer.parseInt(hotelPrice),hotelAddress,
+           hotelDescription,hotelPhone,hotelHours);
         hotelService.addHotelFile(hotel,file);
     }
 
@@ -45,7 +48,7 @@ public class HotelController {
       String fileUri = ServletUriComponentsBuilder
           .fromCurrentContextPath().path("/hotelController/hotelImage/").path(dbFile.getHotelName()).toUriString();
             return new HotelModel(dbFile.getHotelId(),dbFile.getHotelName(),dbFile.getHotelStar(),dbFile.getHotelLocation(),
-            dbFile.getHotelPrice(),fileUri);
+            dbFile.getHotelPrice(),fileUri,dbFile.getHotelAddress(),dbFile.getHotelDescription(),dbFile.getHotelPhone(),dbFile.getHotelHours());
     }).collect(Collectors.toList());
     return ResponseEntity.status(HttpStatus.OK).body(files);
     }

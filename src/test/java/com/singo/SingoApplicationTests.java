@@ -8,6 +8,7 @@ class SingoApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
