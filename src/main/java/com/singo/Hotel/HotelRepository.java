@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.singo.Account.user.UserMapper;
-
 @Repository
 public class HotelRepository {
 
@@ -33,6 +31,22 @@ public class HotelRepository {
       public List<HotelModel> findHotelImage(String name){
         String sql = "SELECT * FROM HOTELS where hotel_name = ?";
         return jdbcTemplate.query(sql,mapHotel(),name);
+    }
+
+        //Update
+    public void updateHotel(HotelModel hotel){
+        String sql = "UPDATE HOTELS SET hotel_name=?,hotel_star=?,hotel_location=?,hotel_price=?,"+
+                    "hotel_image=?,hotel_address=?,hotel_description=?,hotel_phone=?,hotel_hours=? "+
+                    "WHERE hotel_id=?";
+                    jdbcTemplate.update(sql,hotel.getHotelName(),hotel.getHotelStar(),hotel.getHotelLocation(),
+                    hotel.getHotelPrice(),hotel.getHotelImage(),hotel.getHotelAddress(),
+                    hotel.getHotelDescription(),hotel.getHotelPhone(),hotel.getHotelHours(),hotel.getHotelId());
+    }
+
+    //Delete
+    public void deleteHotel(int hotelId){
+        String sql = "DELETE FROM HOTELS WHERE hotel_id = ?";
+        jdbcTemplate.update(sql,hotelId);
     }
 
     //Mapper

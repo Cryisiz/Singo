@@ -24,6 +24,20 @@ public class HotelService {
         hotelRepository.insertHotel(hotel);
     }
 
+        //update Hotel
+    public void updateHotelFile(HotelModel hotel,MultipartFile file)throws IOException{
+
+        //covert file to bytearr
+        byte[] image = file.getBytes();
+        hotel.setHotelImage(image);
+        hotelRepository.updateHotel(hotel);
+    }
+
+    //Delete Activites
+    public void deleteHotel(int hotelId){
+        hotelRepository.deleteHotel(hotelId);
+    }
+
     //getAllHotel
     public Stream<HotelModel> getAllHotel(){
         return hotelRepository.selectAllHotel().stream();

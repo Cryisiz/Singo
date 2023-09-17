@@ -7,12 +7,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -39,6 +35,24 @@ public class HotelController {
            HotelModel hotel = new HotelModel(hotelName,hotelStar,hotelLocation,Integer.parseInt(hotelPrice),hotelAddress,
            hotelDescription,hotelPhone,hotelHours);
         hotelService.addHotelFile(hotel,file);
+    }
+
+    //Update Hotel
+    @PostMapping("/update")
+    public void updateHotelFile(  @RequestParam("hotelId")String hotelId,@RequestParam("hotelName")String hotelName,@RequestParam("hotelStar") String hotelStar, 
+    @RequestParam("hotelLocation")String hotelLocation, @RequestParam("hotelPrice")String hotelPrice,
+    @RequestParam("hotelImage") MultipartFile file,@RequestParam("hotelAddress") String hotelAddress,
+    @RequestParam("hotelDescription")String hotelDescription,@RequestParam("hotelPhone") String hotelPhone,
+    @RequestParam("hotelHours") String hotelHours) throws IOException{
+           HotelModel hotel = new HotelModel(Integer.parseInt(hotelId),hotelName,Integer.parseInt(hotelStar),hotelLocation,Integer.parseInt(hotelPrice),
+           hotelAddress,hotelDescription,hotelPhone,hotelHours);
+        hotelService.updateHotelFile(hotel,file);
+    }
+
+    //Delete Hotel
+    @PostMapping("/delete")
+    public void deleteActvitiesFile(@RequestParam("hotelId")String hotelId){
+      hotelService.deleteHotel(Integer.parseInt(hotelId));
     }
 
     //get all Hotel

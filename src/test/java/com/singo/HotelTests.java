@@ -3,7 +3,6 @@ package com.singo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -19,65 +18,65 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.singo.Activities.ActivitiesRepository;
-import com.singo.Activities.ActivitiesModel;
-import com.singo.Activities.ActivitiesService;
+import com.singo.Hotel.HotelRepository;
+import com.singo.Hotel.HotelModel;
+import com.singo.Hotel.HotelService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AdminActivitiesTests {
+public class HotelTests {
 
     @Autowired
-    private ActivitiesService service;
+    private HotelService service;
 
     @MockBean
-    private ActivitiesRepository repository;
+    private HotelRepository repository;
 
     byte[] bytes = new byte[]{ 1, 2 };
 
-    ActivitiesModel model1 = new ActivitiesModel(1,"testName1", "testType1", "testLocation1", 100,
+    HotelModel model1 = new HotelModel(1,"testName1", 1, "testLocation1", 100,
      bytes, "testAddress1","testDescription1","testPhone1","testHours1");
 
-    ActivitiesModel model2 = new ActivitiesModel(2,"testName2", "testType2", "testLocation2", 200,
+    HotelModel model2 = new HotelModel(2,"testName2", 2, "testLocation2", 200,
     bytes, "testAddress2","testDescription2","testPhone2","testHours2");
 
     MockMultipartFile file = new MockMultipartFile("image", new byte[1]);
 
     //test get all
     @Test
-    public void getAllActivitiesTest(){
-        when(repository.selectAllActivities()).thenReturn(Stream
+    public void getAllHotelTest(){
+        when(repository.selectAllHotel()).thenReturn(Stream
         .of(model1,model2).collect(Collectors.toList()));
-		assertEquals(2, service.getAllActivities().count());
+		assertEquals(2, service.getAllHotel().count());
 	}
     
     //test add
     @Test
-	public void addActivitiesTest() throws IOException {
-		service.addActivitiesFile(model1,file);
-        verify(repository, times(1)).insertActivities(model1);
+	public void addHotelTest() throws IOException {
+		service.addHotelFile(model1,file);
+        verify(repository, times(1)).insertHotel(model1);
 	}
 
     //test update
      @Test
-	public void updateActivitiesTest() throws IOException {
-		service.updateActivitiesFile(model1,file);
-        verify(repository, times(1)).updateActivities(model1);
+	public void updateHotelTest() throws IOException {
+		service.updateHotelFile(model1,file);
+        verify(repository, times(1)).updateHotel(model1);
 	}
 
     //test delete
     @Test
-	public void deleteActivitiesTest() {
-		service.deleteActivities(1);
-		verify(repository, times(1)).deleteActivities(1);
+	public void deleteHotelTest() {
+		service.deleteHotel(1);
+		verify(repository, times(1)).deleteHotel(1);
 	}
     
     @Test
-	public void getBytesActivitiesTest() {
+	public void getBytesHotelTest() {
 		String name = "testName1";
-		when(repository.findActivitiesImage(name))
+		when(repository.findHotelImage(name))
 				.thenReturn(Stream.of(model1).collect(Collectors.toList()));
-		assertEquals(bytes, service.getActivitiesImage(name));
+		assertEquals(bytes, service.getHotelImage(name));
 	}
     
 }
