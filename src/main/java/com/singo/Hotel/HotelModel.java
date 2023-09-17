@@ -9,36 +9,54 @@ public class HotelModel {
   private int hotelPrice;
   private byte[] hotelImage;
   private String hotelUrl;
+  private String hotelAddress;
+  private String hotelDescription;
+  private String hotelPhone;
+  private String hotelHours;
     
   public HotelModel(){
 
   }
 
-    public HotelModel(int hotelId, String hotelName, int hotelStar, String hotelLocation, int hotelPrice, byte[] hotelImage) {
+    public HotelModel(int hotelId, String hotelName, int hotelStar, String hotelLocation, int hotelPrice, byte[] hotelImage,String hotelAddress,
+                        String hotelDescription,String hotelPhone,String hotelHours) {
         this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.hotelStar = hotelStar;
         this.hotelLocation = hotelLocation;
         this.hotelPrice = hotelPrice;
         this.hotelImage = hotelImage;
+        this.hotelAddress = hotelAddress;
+        this.hotelDescription = hotelDescription;
+        this.hotelPhone = hotelPhone;
+        this.hotelHours = hotelHours;
     }
 
-        public HotelModel(String hotelName, int hotelStar, String hotelLocation, int hotelPrice) {
+        public HotelModel(String hotelName, int hotelStar, String hotelLocation, int hotelPrice,String hotelAddress,
+                        String hotelDescription,String hotelPhone,String hotelHours) {
         this.hotelName = hotelName;
         this.hotelStar = hotelStar;
         this.hotelLocation = hotelLocation;
         this.hotelPrice = hotelPrice;
+        this.hotelAddress = hotelAddress;
+        this.hotelDescription = hotelDescription;
+        this.hotelPhone = hotelPhone;
+        this.hotelHours = hotelHours;
     }
 
-    public HotelModel(int hotelId, String hotelName, int hotelStar, String hotelLocation, int hotelPrice, String hotelUrl) {
+    public HotelModel(int hotelId, String hotelName, int hotelStar, String hotelLocation, int hotelPrice, String hotelUrl,String hotelAddress,
+                        String hotelDescription,String hotelPhone,String hotelHours) {
         this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.hotelStar = hotelStar;
         this.hotelLocation = hotelLocation;
         this.hotelPrice = hotelPrice;
         this.hotelUrl = hotelUrl;
+        this.hotelAddress = hotelAddress;
+        this.hotelDescription = hotelDescription;
+        this.hotelPhone = hotelPhone;
+        this.hotelHours = hotelHours;
     }
-
 
     public int getHotelId() {
         return this.hotelId;
@@ -92,9 +110,42 @@ public class HotelModel {
         return this.hotelUrl;
     }
 
-    public void setHotelUri(String hotelUrl) {
+    public void setHotelUrl(String hotelUrl) {
         this.hotelUrl = hotelUrl;
     }
+
+    public String getHotelAddress() {
+        return this.hotelAddress;
+    }
+
+    public void setHotelAddress(String hotelAddress) {
+        this.hotelAddress = hotelAddress;
+    }
+
+    public String getHotelDescription() {
+        return this.hotelDescription;
+    }
+
+    public void setHotelDescription(String hotelDescription) {
+        this.hotelDescription = hotelDescription;
+    }
+
+    public String getHotelPhone() {
+        return this.hotelPhone;
+    }
+
+    public void setHotelPhone(String hotelPhone) {
+        this.hotelPhone = hotelPhone;
+    }
+
+    public String getHotelHours() {
+        return this.hotelHours;
+    }
+
+    public void setHotelHours(String hotelHours) {
+        this.hotelHours = hotelHours;
+    }
+
 
 
 }

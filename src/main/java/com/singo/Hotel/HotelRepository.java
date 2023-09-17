@@ -16,10 +16,12 @@ public class HotelRepository {
 
     //Insert
     public void insertHotel(HotelModel hotel){
-        String sql = "INSERT INTO HOTELS(hotel_name,hotel_star,hotel_location,hotel_price,hotel_image)"+
-                    "VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO HOTELS(hotel_name,hotel_star,hotel_location,hotel_price,hotel_image,hotel_address,"+
+                    "hotel_description,hotel_phone,hotel_hours)"+
+                    "VALUES(?,?,?,?,?,?,?,?,?)";
                     jdbcTemplate.update(sql,hotel.getHotelName(),hotel.getHotelStar(),hotel.getHotelLocation(),
-                    hotel.getHotelPrice(),hotel.getHotelImage());
+                    hotel.getHotelPrice(),hotel.getHotelImage(),hotel.getHotelAddress(),hotel.getHotelDescription(),
+                    hotel.getHotelPhone(),hotel.getHotelHours());
     };
 
     //GetAll
@@ -42,7 +44,12 @@ public class HotelRepository {
             String hotelLocation = resultSet.getString("hotel_location");
             int hotelPrice = resultSet.getInt("hotel_price");
             byte[] hotelImage = resultSet.getBytes("hotel_image");
-            return new HotelModel(hotelId,hotelName, hotelStar, hotelLocation, hotelPrice,hotelImage);
+            String hotelAddress = resultSet.getString("hotel_address");
+            String hotelDescription = resultSet.getString("hotel_description");
+            String hotelPhone = resultSet.getString("hotel_phone");
+            String hotelHours = resultSet.getString("hotel_hours");
+            return new HotelModel(hotelId,hotelName, hotelStar, hotelLocation, hotelPrice,hotelImage,
+                                    hotelAddress,hotelDescription,hotelPhone,hotelHours);
         };
     }
 }
