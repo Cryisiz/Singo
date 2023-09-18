@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,9 +30,30 @@ public class RestaurantController {
     @PostMapping("/add")
     public void addRestaurantFile( @RequestParam("restaurantName")String restaurantName,@RequestParam("restaurantType") String restaurantType, 
     @RequestParam("restaurantLocation")String restaurantLocation, @RequestParam("restaurantPrice")String restaurantPrice,
-    @RequestParam("restaurantImage") MultipartFile file) throws IOException{
-           RestaurantModel restaurant = new RestaurantModel(restaurantName,restaurantType,restaurantLocation,restaurantPrice);
+    @RequestParam("restaurantImage") MultipartFile file,@RequestParam("restaurantAddress") String restaurantAddress,
+    @RequestParam("restaurantDescription")String restaurantDescription,@RequestParam("restaurantPhone") String restaurantPhone,
+    @RequestParam("restaurantHours") String restaurantHours) throws IOException{
+           RestaurantModel restaurant = new RestaurantModel(restaurantName,restaurantType,restaurantLocation,restaurantPrice,
+           restaurantAddress,restaurantDescription,restaurantPhone,restaurantHours);
         restaurantService.addRestaurantFile(restaurant,file);
+    }
+
+        //Update Restaurant
+    @PostMapping("/update")
+    public void updateRestaurantFile(  @RequestParam("restaurantId")String restaurantId,@RequestParam("restaurantName")String restaurantName,@RequestParam("restaurantType") String restaurantType, 
+    @RequestParam("restaurantLocation")String restaurantLocation, @RequestParam("restaurantPrice")String restaurantPrice,
+    @RequestParam("restaurantImage") MultipartFile file,@RequestParam("restaurantAddress") String restaurantAddress,
+    @RequestParam("restaurantDescription")String restaurantDescription,@RequestParam("restaurantPhone") String restaurantPhone,
+    @RequestParam("restaurantHours") String restaurantHours) throws IOException{
+           RestaurantModel restaurant = new RestaurantModel(Integer.parseInt(restaurantId),restaurantName,restaurantType,restaurantLocation,restaurantPrice,
+           restaurantAddress,restaurantDescription,restaurantPhone,restaurantHours);
+        restaurantService.updateRestaurantFile(restaurant,file);
+    }
+
+    //Delete Restaurant
+    @PostMapping("/delete")
+    public void deleteActvitiesFile(@RequestParam("restaurantId")String restaurantId){
+      restaurantService.deleteRestaurant(Integer.parseInt(restaurantId));
     }
 
     //get all Restaurant
@@ -41,7 +63,7 @@ public class RestaurantController {
       String fileUri = ServletUriComponentsBuilder
           .fromCurrentContextPath().path("/restaurantController/restaurantImage/").path(dbFile.getRestaurantName()).toUriString();
             return new RestaurantModel(dbFile.getRestaurantId(),dbFile.getRestaurantName(),dbFile.getRestaurantType(),dbFile.getRestaurantLocation(),
-            dbFile.getRestaurantPrice(),fileUri);
+            dbFile.getRestaurantPrice(),fileUri,dbFile.getRestaurantAddress(),dbFile.getRestaurantDescription(),dbFile.getRestaurantPhone(),dbFile.getRestaurantHours());
     }).collect(Collectors.toList());
     return ResponseEntity.status(HttpStatus.OK).body(files);
     }
