@@ -24,6 +24,20 @@ public class RestaurantService {
         restaurantRepository.insertRestaurant(restaurant);
     }
 
+    //update Restaurant
+    public void updateRestaurantFile(RestaurantModel restaurant,MultipartFile file)throws IOException{
+
+        //covert file to bytearr
+        byte[] image = file.getBytes();
+        restaurant.setRestaurantImage(image);
+        restaurantRepository.updateRestaurant(restaurant);
+    }
+
+    //Delete Restaurant
+    public void deleteRestaurant(int restaurantId){
+        restaurantRepository.deleteRestaurant(restaurantId);
+    }
+
     //getAllRestaurant
     public Stream<RestaurantModel> getAllRestaurant(){
         return restaurantRepository.selectAllRestaurant().stream();
