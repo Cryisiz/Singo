@@ -24,17 +24,25 @@ public class ItineraryRepository {
 
     //get all
     public List<ItineraryModel> selectAllItinerary(String itineraryEmail){
-        String sql = "SELECT * FROM ITINERARY WHERE itinerary_email = ?";
-        return jdbcTemplate.query(sql,mapItinerary(),itineraryEmail);
+        String sql = "SELECT * FROM ITINERARY WHERE itinerary_email LIKE ?";
+        return jdbcTemplate.query(sql,mapItinerary(),"%"+itineraryEmail+"%");
+
+    }
+
+        //get 
+    public List<ItineraryModel> getItinerary(int itineraryId){
+        String sql = "SELECT * FROM ITINERARY WHERE itinerary_id = ?";
+        return jdbcTemplate.query(sql,mapItinerary(),itineraryId);
 
     }
 
      //Update
     public void updateItinerary(ItineraryModel itinerary){
         String sql = "UPDATE ITINERARY SET itinerary_name=?,itinerary_start=?,itinerary_end=?,itinerary_adult=?,"+
-                    "itinerary_child=? WHERE itinerary_id=?";
+                    "itinerary_child=?,itinerary_email=? WHERE itinerary_id=?";
                     jdbcTemplate.update(sql,itinerary.getItineraryName(),itinerary.getItineraryStart(),
-                    itinerary.getItineraryEnd(),itinerary.getItineraryAdult(),itinerary.getItineraryChild(),itinerary.getItineraryId());
+                    itinerary.getItineraryEnd(),itinerary.getItineraryAdult(),itinerary.getItineraryChild(),
+                    itinerary.getItineraryEmail(),itinerary.getItineraryId());
     }
 
     //Delete

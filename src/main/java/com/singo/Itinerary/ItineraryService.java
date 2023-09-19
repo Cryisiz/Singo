@@ -30,5 +30,14 @@ public class ItineraryService {
     public List<ItineraryModel> getAllItinerary(String itineraryEmail){
         return itineraryRepository.selectAllItinerary(itineraryEmail);
     }
+
+    //add user
+    public void addUser(int itineraryId,String addUserEmail){
+        List<ItineraryModel> modelList = itineraryRepository.getItinerary(itineraryId);
+        ItineraryModel model  = modelList.get(0);
+        String email = model.getItineraryEmail() + "," + addUserEmail;
+        model.setItineraryEmail(email);
+        itineraryRepository.updateItinerary(model);
+    }
     
 }
