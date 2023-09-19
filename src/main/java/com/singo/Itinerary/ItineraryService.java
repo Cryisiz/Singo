@@ -16,9 +16,14 @@ public class ItineraryService {
         itineraryRepository.insertItinerary(itinerary);
     }
 
-    //update Itinery
+    //update Itinerary
     public void updateItinerary(ItineraryModel itinerary){
         itineraryRepository.updateItinerary(itinerary);
+    }
+
+    //Delete Itinerary
+    public void deleteItinerary(int itineraryId){
+        itineraryRepository.deleteItinerary(itineraryId);
     }
 
     //get All Itinerary

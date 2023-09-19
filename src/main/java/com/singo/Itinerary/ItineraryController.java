@@ -32,6 +32,7 @@ public class ItineraryController {
            itineraryService.addItinerary(itinerary);
     }
 
+    //update Itinerary
      @PostMapping("/update")
     public void updateItineraryFile( @RequestParam("itineraryId") String itineraryId,@RequestParam("itineraryName")String itineraryName,
     @RequestParam("itineraryStart") Date itineraryStart, @RequestParam("itineraryEnd") Date itineraryEnd, 
@@ -39,6 +40,12 @@ public class ItineraryController {
            ItineraryModel itinerary = new ItineraryModel(Integer.parseInt(itineraryId),itineraryName,itineraryStart,itineraryEnd,
            Integer.parseInt(itineraryAdult),Integer.parseInt(itineraryChild));
            itineraryService.updateItinerary(itinerary);
+    }
+
+    //delete Itinerary
+    @PostMapping("/delete")
+    public void deleteItineraryFile(@RequestParam("itineraryId")String itineraryId){
+      itineraryService.deleteItinerary(Integer.parseInt(itineraryId));
     }
 
     //get all itinerary by user
