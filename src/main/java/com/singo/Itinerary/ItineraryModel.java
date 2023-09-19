@@ -29,6 +29,15 @@ public class ItineraryModel {
         this.itineraryChild = itineraryChild;
         this.itineraryEmail = itineraryEmail;
     }
+
+    public ItineraryModel(int itineraryId, String itineraryName, Date itineraryStart, Date itineraryEnd, int itineraryAdult, int itineraryChild) {
+        this.itineraryId = itineraryId;
+        this.itineraryName = itineraryName;
+        this.itineraryStart = itineraryStart;
+        this.itineraryEnd = itineraryEnd;
+        this.itineraryAdult = itineraryAdult;
+        this.itineraryChild = itineraryChild;
+    }
     
 
     public int getItineraryId() {

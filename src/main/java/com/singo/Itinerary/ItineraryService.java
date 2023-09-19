@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.singo.Hotel.HotelModel;
-
 @Service
 public class ItineraryService {
 
@@ -16,6 +14,11 @@ public class ItineraryService {
     //add Itinerary
     public void addItinerary(ItineraryModel itinerary){
         itineraryRepository.insertItinerary(itinerary);
+    }
+
+    //update Itinery
+    public void updateItinerary(ItineraryModel itinerary){
+        itineraryRepository.updateItinerary(itinerary);
     }
 
     //get All Itinerary

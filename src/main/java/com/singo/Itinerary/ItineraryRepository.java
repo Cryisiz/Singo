@@ -22,10 +22,19 @@ public class ItineraryRepository {
                                         itinerary.getItineraryAdult(),itinerary.getItineraryChild(),itinerary.getItineraryEmail());
     }
 
+    //get all
     public List<ItineraryModel> selectAllItinerary(String itineraryEmail){
         String sql = "SELECT * FROM ITINERARY WHERE itinerary_email = ?";
         return jdbcTemplate.query(sql,mapItinerary(),itineraryEmail);
 
+    }
+
+     //Update
+    public void updateItinerary(ItineraryModel itinerary){
+        String sql = "UPDATE ITINERARY SET itinerary_name=?,itinerary_start=?,itinerary_end=?,itinerary_adult=?,"+
+                    "itinerary_child=? WHERE itinerary_id=?";
+                    jdbcTemplate.update(sql,itinerary.getItineraryName(),itinerary.getItineraryStart(),
+                    itinerary.getItineraryEnd(),itinerary.getItineraryAdult(),itinerary.getItineraryChild(),itinerary.getItineraryId());
     }
 
     //Mapper

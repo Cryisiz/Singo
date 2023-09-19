@@ -23,7 +23,6 @@ public class LogoutService  {
       storedToken.setRevoked(true);
       tokenRepository.save(storedToken);
       SecurityContextHolder.clearContext();
-      System.out.println("hello");
     }
   }
 }
