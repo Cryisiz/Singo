@@ -7,6 +7,7 @@ Dependencies -Spring Web
              -Spring Data JPA
              -PostgreSQL Driver
              -Spring Security
+             -JUnit
 CI/CD -Github
       -Docker
 Test Environment -Docker Desktop
