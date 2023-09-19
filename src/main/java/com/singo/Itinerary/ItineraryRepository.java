@@ -37,6 +37,12 @@ public class ItineraryRepository {
                     itinerary.getItineraryEnd(),itinerary.getItineraryAdult(),itinerary.getItineraryChild(),itinerary.getItineraryId());
     }
 
+    //Delete
+    public void deleteItinerary(int itineraryId){
+        String sql = "DELETE FROM ITINERARY WHERE itinerary_id = ?";
+        jdbcTemplate.update(sql,itineraryId);
+    }
+
     //Mapper
     private RowMapper<ItineraryModel> mapItinerary() {
         return (resultSet, i) -> {
