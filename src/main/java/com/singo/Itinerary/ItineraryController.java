@@ -9,13 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import com.singo.Itinerary.ItineraryModel;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -36,6 +32,16 @@ public class ItineraryController {
            itineraryService.addItinerary(itinerary);
     }
 
+     @PostMapping("/update")
+    public void updateItineraryFile( @RequestParam("itineraryId") String itineraryId,@RequestParam("itineraryName")String itineraryName,
+    @RequestParam("itineraryStart") Date itineraryStart, @RequestParam("itineraryEnd") Date itineraryEnd, 
+    @RequestParam("itineraryAdult") String itineraryAdult,@RequestParam("itineraryChild") String itineraryChild){
+           ItineraryModel itinerary = new ItineraryModel(Integer.parseInt(itineraryId),itineraryName,itineraryStart,itineraryEnd,
+           Integer.parseInt(itineraryAdult),Integer.parseInt(itineraryChild));
+           itineraryService.updateItinerary(itinerary);
+    }
+
+    //get all itinerary by user
     @PostMapping("/getAll")
     public ResponseEntity<List<ItineraryModel>> getAllItinerary(@RequestParam("itineraryEmail") String itineraryEmail){
     return ResponseEntity.status(HttpStatus.OK).body(itineraryService.getAllItinerary(itineraryEmail));
