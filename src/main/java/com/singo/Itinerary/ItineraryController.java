@@ -36,10 +36,17 @@ public class ItineraryController {
      @PostMapping("/update")
     public void updateItineraryFile( @RequestParam("itineraryId") String itineraryId,@RequestParam("itineraryName")String itineraryName,
     @RequestParam("itineraryStart") Date itineraryStart, @RequestParam("itineraryEnd") Date itineraryEnd, 
-    @RequestParam("itineraryAdult") String itineraryAdult,@RequestParam("itineraryChild") String itineraryChild){
+    @RequestParam("itineraryAdult") String itineraryAdult,@RequestParam("itineraryChild") String itineraryChild,
+            @RequestParam("itineraryEmail") String itineraryEmail){
            ItineraryModel itinerary = new ItineraryModel(Integer.parseInt(itineraryId),itineraryName,itineraryStart,itineraryEnd,
-           Integer.parseInt(itineraryAdult),Integer.parseInt(itineraryChild));
+           Integer.parseInt(itineraryAdult),Integer.parseInt(itineraryChild),itineraryEmail);
            itineraryService.updateItinerary(itinerary);
+    }
+
+    //add User
+     @PostMapping("/addUser")
+    public void addUserItinerary( @RequestParam("itineraryId") String itineraryId,@RequestParam("addUserEmail") String addUserEmail){
+           itineraryService.addUser(Integer.parseInt(itineraryId),addUserEmail);
     }
 
     //delete Itinerary
