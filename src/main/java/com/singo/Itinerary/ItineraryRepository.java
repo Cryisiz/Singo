@@ -22,6 +22,14 @@ public class ItineraryRepository {
                                         itinerary.getItineraryAdult(),itinerary.getItineraryChild(),itinerary.getItineraryEmail());
     }
 
+    
+    //get inserted row
+    public List<ItineraryModel> getInsertedItinerary(String itineraryEmail){
+        String sql = "SELECT * FROM ITINERARY WHERE itinerary_email LIKE ? "+
+                    "Order by itinerary_id DESC LIMIT 1";
+        return jdbcTemplate.query(sql,mapItinerary(),"%"+itineraryEmail+"%");
+    }
+
     //get all
     public List<ItineraryModel> selectAllItinerary(String itineraryEmail){
         String sql = "SELECT * FROM ITINERARY WHERE itinerary_email LIKE ?";
@@ -29,7 +37,7 @@ public class ItineraryRepository {
 
     }
 
-        //get 
+        //get Itinerary
     public List<ItineraryModel> getItinerary(int itineraryId){
         String sql = "SELECT * FROM ITINERARY WHERE itinerary_id = ?";
         return jdbcTemplate.query(sql,mapItinerary(),itineraryId);
