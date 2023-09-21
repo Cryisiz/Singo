@@ -37,4 +37,14 @@ public class DayService {
     public void deleteDayHotel(int dayId){
         dayRepository.deleteDayHotel(dayId);
     }
+
+    //update Day
+    public void updateDay(int dayName,Date dayDate,int itineraryId){
+        dayRepository.updateDay(dayName,dayDate,itineraryId);
+    }
+
+    //update Day
+    public void deleteDay(int dayName,int itineraryId){
+        dayRepository.deleteDay(dayName,itineraryId);
+    }
 }

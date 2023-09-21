@@ -28,4 +28,9 @@ public class PlanService {
     public void changePlan(String planType,int planEventId,int planId){
         planRepository.updatePlan(planType,planEventId,planId);
     }
+
+    //delete Plan
+    public void deletePlan(int planId){
+        planRepository.deletePlan(planId);
+    }
 }
