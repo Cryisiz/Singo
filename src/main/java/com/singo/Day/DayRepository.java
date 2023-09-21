@@ -45,6 +45,18 @@ public class DayRepository {
                     jdbcTemplate.update(sql,null,dayId);
     }
 
+    //update day
+    public void updateDay(int dayName,Date dayDate,int itineraryId){
+        String sql = "UPDATE DAY SET day_date=? WHERE day_name=? AND day_itineraryid=? ";
+                    jdbcTemplate.update(sql,dayDate,dayName,itineraryId);
+    }
+
+    //delete day
+    public void deleteDay(int dayName,int itineraryId){
+        String sql = "DELETE FROM DAY WHERE day_name=? AND day_itineraryid=? ";
+                    jdbcTemplate.update(sql,dayName,itineraryId);
+    }
+
     
     //Mapper
     private RowMapper<DayModel> mapDay() {

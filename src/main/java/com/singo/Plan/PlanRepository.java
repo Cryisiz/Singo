@@ -1,6 +1,5 @@
 package com.singo.Plan;
 
-import java.sql.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,6 +29,11 @@ public class PlanRepository {
     public void updatePlan(String planType,int planEventId,int planId){
         String sql = "UPDATE PLAN SET plan_type=?,plan_eventid=? WHERE plan_id=?";
                     jdbcTemplate.update(sql,planType,planEventId,planId);
+    }
+    //Delete
+    public void deletePlan(int planId){
+        String sql = "DELETE FROM PLAN WHERE plan_id = ?";
+        jdbcTemplate.update(sql,planId);
     }
 
     //Mapper

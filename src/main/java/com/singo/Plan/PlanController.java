@@ -37,4 +37,10 @@ public class PlanController {
     public void changePlan( @RequestParam("planType") String planType,@RequestParam("planEventId")String planEventId,@RequestParam("planId")String planId ){
            planService.changePlan(planType,Integer.parseInt(planEventId),Integer.parseInt(planId));
     }
+
+    //Delete Plan
+    @PostMapping("/deletePlan")
+    public void deletePlan(@RequestParam("planId")String planId ){
+           planService.deletePlan(Integer.parseInt(planId));
+    }
 }

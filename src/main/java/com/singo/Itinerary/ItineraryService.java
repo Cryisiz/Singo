@@ -32,6 +32,33 @@ public class ItineraryService {
 
     //update Itinerary
     public void updateItinerary(ItineraryModel itinerary){
+        List<ItineraryModel> modelList = itineraryRepository.getItinerary(itinerary.getItineraryId());
+        ItineraryModel model  = modelList.get(0);
+        LocalDate startDate = model.getItineraryStart().toLocalDate();
+        LocalDate endDate = model.getItineraryEnd().toLocalDate();
+        List<LocalDate> listOfDates = startDate.datesUntil(endDate).collect(Collectors.toList());
+        LocalDate startDate1 = itinerary.getItineraryStart().toLocalDate();
+        LocalDate endDate1 = itinerary.getItineraryEnd().toLocalDate();
+        List<LocalDate> listOfDates1 = startDate1.datesUntil(endDate1).collect(Collectors.toList());
+        if(listOfDates.size() > listOfDates1.size()){
+            for (int i = 0; i < listOfDates1.size();i++){
+                dayService.updateDay(i+1,Date.valueOf(listOfDates1.get(i)),itinerary.getItineraryId());
+            }   
+            for(int i = listOfDates1.size();i<listOfDates.size();i++){
+                dayService.deleteDay(i+1,itinerary.getItineraryId());
+            }
+        }else if(listOfDates.size() < listOfDates1.size()){
+            for (int i = 0; i < listOfDates.size();i++){
+                dayService.updateDay(i+1,Date.valueOf(listOfDates1.get(i)),itinerary.getItineraryId());
+            }
+            for(int i = listOfDates.size();i<listOfDates1.size();i++){
+                dayService.addDay(i+1,Date.valueOf(listOfDates1.get(i)),itinerary.getItineraryId());
+            }
+        }else if(listOfDates1.size() == listOfDates.size()){
+            for (int i = 0; i < listOfDates.size();i++){
+                dayService.updateDay(i+1,Date.valueOf(listOfDates1.get(i)),itinerary.getItineraryId());
+            }
+        }
         itineraryRepository.updateItinerary(itinerary);
     }
 
