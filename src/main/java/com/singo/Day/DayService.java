@@ -32,4 +32,9 @@ public class DayService {
     public void addDayHotel(int dayId,int hotelId){
         dayRepository.updateDayHotel(dayId,hotelId);
     }
+
+    //delete Hotel
+    public void deleteDayHotel(int dayId){
+        dayRepository.deleteDayHotel(dayId);
+    }
 }

@@ -26,6 +26,12 @@ public class PlanRepository {
                     jdbcTemplate.update(sql,planName,planType,planEventId,planDayId);
     }
 
+    //Update plan
+    public void updatePlan(String planType,int planEventId,int planId){
+        String sql = "UPDATE PLAN SET plan_type=?,plan_eventid=? WHERE plan_id=?";
+                    jdbcTemplate.update(sql,planType,planEventId,planId);
+    }
+
     //Mapper
     private RowMapper<PlanModel> mapPlan() {
         return (resultSet, i) -> {

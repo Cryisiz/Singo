@@ -39,6 +39,12 @@ public class DayRepository {
                     jdbcTemplate.update(sql,hotelId,dayId);
     }
 
+    //Delete hotel
+    public void deleteDayHotel(int dayId){
+        String sql = "UPDATE DAY SET day_hotelid=? WHERE day_id=?";
+                    jdbcTemplate.update(sql,null,dayId);
+    }
+
     
     //Mapper
     private RowMapper<DayModel> mapDay() {
