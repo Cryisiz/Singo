@@ -1,5 +1,7 @@
 package com.singo.Plan;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,5 +24,11 @@ public class PlanController {
     @PostMapping("/addPlan")
     public void addPlan( @RequestParam("planType") String planType,@RequestParam("planEventId")String planEventId,@RequestParam("planDayId")String planDayId ){
            planService.addPlan(planType,Integer.parseInt(planEventId),Integer.parseInt(planDayId));
+    }
+
+    //get all Plan
+    @PostMapping("/getAll")
+    public ResponseEntity<List<PlanModel>> getAllDay(@RequestParam("dayId") String dayId){
+    return ResponseEntity.status(HttpStatus.OK).body(planService.getAllPlan(Integer.parseInt(dayId)));
     }
 }

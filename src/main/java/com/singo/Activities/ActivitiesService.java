@@ -43,6 +43,11 @@ public class ActivitiesService {
         return activitiesRepository.selectAllActivities().stream();
     }
 
+    //getActivities
+    public Stream<ActivitiesModel> getActivities(int activitiesId){
+        return activitiesRepository.selectActivities(activitiesId).stream();
+    }
+
     //Get ActivitiesImage data
     public byte[] getActivitiesImage(String name) {
         List<ActivitiesModel> activities = activitiesRepository.findActivitiesImage(name);

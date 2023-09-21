@@ -49,6 +49,13 @@ public class ActivitiesRepository {
         return jdbcTemplate.query(sql,mapActivities(),name);
     }
 
+    //GetActivities
+    public List<ActivitiesModel> selectActivities(int activities_id) {
+        String sql = "SELECT * FROM ACTIVITIES WHERE activities_id = ?";
+         return jdbcTemplate.query(sql, mapActivities(),activities_id);
+    }
+
+
     //Mapper
     private RowMapper<ActivitiesModel> mapActivities() {
         return (resultSet, i) -> {
