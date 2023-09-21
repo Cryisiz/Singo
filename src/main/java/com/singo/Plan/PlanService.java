@@ -18,4 +18,9 @@ public class PlanService {
         int planName = modelList.size() + 1;
         planRepository.insertPlan(planName,planType,planEventId,planDayId);
     }
+
+    //get all plan
+    public List<PlanModel> getAllPlan(int dayId){
+        return planRepository.getAllPlan(dayId);
+    }
 }

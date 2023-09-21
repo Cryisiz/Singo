@@ -75,5 +75,17 @@ public class ActivitiesController {
         .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + name + "\"")
         .body(data);
   }
+
+   //get Activities
+    @PostMapping("/getActivities")
+    public ResponseEntity<List<ActivitiesModel>> getActivities( @RequestParam("activitiesId")String activitiesId){
+        List<ActivitiesModel> files = activitiesService.getActivities(Integer.parseInt(activitiesId)).map(dbFile -> {
+      String fileUri = ServletUriComponentsBuilder
+          .fromCurrentContextPath().path("/activitiesController/activitiesImage/").path(dbFile.getActivitiesName()).toUriString();
+            return new ActivitiesModel(dbFile.getActivitiesId(),dbFile.getActivitiesName(),dbFile.getActivitiesType(),dbFile.getActivitiesLocation(),
+            dbFile.getActivitiesPrice(),fileUri,dbFile.getActivitiesAddress(),dbFile.getActivitiesDescription(),dbFile.getActivitiesPhone(),dbFile.getActivitiesHours());
+    }).collect(Collectors.toList());
+    return ResponseEntity.status(HttpStatus.OK).body(files);
+    }
 }
 
