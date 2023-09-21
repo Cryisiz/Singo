@@ -23,4 +23,9 @@ public class PlanService {
     public List<PlanModel> getAllPlan(int dayId){
         return planRepository.getAllPlan(dayId);
     }
+
+    //update Plan
+    public void changePlan(String planType,int planEventId,int planId){
+        planRepository.updatePlan(planType,planEventId,planId);
+    }
 }

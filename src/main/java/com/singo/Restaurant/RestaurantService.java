@@ -49,4 +49,9 @@ public class RestaurantService {
         return restaurant.get(0).getRestaurantImage();
       }
     
+    //getRestaurant
+    public Stream<RestaurantModel> getRestaurant(int restaurantId){
+        return restaurantRepository.selectRestaurant(restaurantId).stream();
+    }
+    
 }

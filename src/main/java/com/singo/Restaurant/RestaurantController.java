@@ -76,6 +76,18 @@ public class RestaurantController {
         .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + name + "\"")
         .body(data);
   }
+
+      //get Restaurant
+    @PostMapping("/getRestaurant")
+    public ResponseEntity<List<RestaurantModel>> getRestaurant(@RequestParam("restaurantId")String restaurantId){
+        List<RestaurantModel> files = restaurantService.getRestaurant(Integer.parseInt(restaurantId)).map(dbFile -> {
+      String fileUri = ServletUriComponentsBuilder
+          .fromCurrentContextPath().path("/restaurantController/restaurantImage/").path(dbFile.getRestaurantName()).toUriString();
+            return new RestaurantModel(dbFile.getRestaurantId(),dbFile.getRestaurantName(),dbFile.getRestaurantType(),dbFile.getRestaurantLocation(),
+            dbFile.getRestaurantPrice(),fileUri,dbFile.getRestaurantAddress(),dbFile.getRestaurantDescription(),dbFile.getRestaurantPhone(),dbFile.getRestaurantHours());
+    }).collect(Collectors.toList());
+    return ResponseEntity.status(HttpStatus.OK).body(files);
+    }
 }
 
 

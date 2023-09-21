@@ -31,4 +31,10 @@ public class PlanController {
     public ResponseEntity<List<PlanModel>> getAllDay(@RequestParam("dayId") String dayId){
     return ResponseEntity.status(HttpStatus.OK).body(planService.getAllPlan(Integer.parseInt(dayId)));
     }
+
+    //change Plan
+    @PostMapping("/changePlan")
+    public void changePlan( @RequestParam("planType") String planType,@RequestParam("planEventId")String planEventId,@RequestParam("planId")String planId ){
+           planService.changePlan(planType,Integer.parseInt(planEventId),Integer.parseInt(planId));
+    }
 }

@@ -41,4 +41,10 @@ public class DayController {
     public void addDayHotel( @RequestParam("dayId")String dayId,@RequestParam("hotelId") String hotelId){
            dayService.addDayHotel(Integer.parseInt(dayId),Integer.parseInt(hotelId));
     }
+
+    // delete hotel 
+    @PostMapping("/deleteHotel")
+    public void deleteDayHotel( @RequestParam("dayId")String dayId){
+           dayService.deleteDayHotel(Integer.parseInt(dayId));
+    }
 }
