@@ -39,7 +39,8 @@ public class RestaurantRepository {
     }
 
     //GetAll
-    public List<RestaurantModel> selectAllRestaurant() {String sql = "SELECT * FROM RESTAURANTS";
+    public List<RestaurantModel> selectAllRestaurant() 
+    {String sql = "SELECT * FROM RESTAURANTS";
         return jdbcTemplate.query(sql, mapRestaurant());
     }
 
@@ -47,6 +48,12 @@ public class RestaurantRepository {
       public List<RestaurantModel> findRestaurantImage(String name){
         String sql = "SELECT * FROM RESTAURANTS where restaurant_name = ?";
         return jdbcTemplate.query(sql,mapRestaurant(),name);
+    }
+
+    //Get Restaurant
+    public List<RestaurantModel> selectRestaurant(int restaurantId)
+     {String sql = "SELECT * FROM RESTAURANTS WHERE restaurant_id = ?";
+        return jdbcTemplate.query(sql, mapRestaurant(),restaurantId);
     }
 
     //Mapper
