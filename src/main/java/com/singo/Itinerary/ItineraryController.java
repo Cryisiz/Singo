@@ -60,5 +60,6 @@ public class ItineraryController {
     public ResponseEntity<List<ItineraryModel>> getAllItinerary(@RequestParam("itineraryEmail") String itineraryEmail){
     return ResponseEntity.status(HttpStatus.OK).body(itineraryService.getAllItinerary(itineraryEmail));
     }
+
 }
 

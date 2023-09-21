@@ -1,4 +1,4 @@
-package com.singo.Account.Day;
+package com.singo.Day;
 
 import java.sql.Date;
 
@@ -27,6 +27,18 @@ public class DayRepository {
         return jdbcTemplate.query(sql,mapDay(),dayItineraryId);
     }
 
+    //get day by hotel id
+    public List<DayModel> selectDay(int dayId){
+        String sql = "SELECT * FROM DAY WHERE day_id = ? ";
+        return jdbcTemplate.query(sql,mapDay(),dayId);
+    }
+
+    //Update hotel
+    public void updateDayHotel(int dayId,int hotelId){
+        String sql = "UPDATE DAY SET day_hotelid=? WHERE day_id=?";
+                    jdbcTemplate.update(sql,hotelId,dayId);
+    }
+
     
     //Mapper
     private RowMapper<DayModel> mapDay() {
@@ -35,7 +47,8 @@ public class DayRepository {
             int dayName = resultSet.getInt("day_name");
             Date dayDate = resultSet.getDate("day_date");
             int dayItineraryId = resultSet.getInt("day_itineraryid");
-            return new DayModel(dayId,dayName,dayDate,dayItineraryId);
+            int dayHotelId = resultSet.getInt("day_hotelid");
+            return new DayModel(dayId,dayName,dayDate,dayItineraryId,dayHotelId);
         };
     }
 }

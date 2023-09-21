@@ -23,8 +23,15 @@ public class HotelRepository {
     };
 
     //GetAll
-    public List<HotelModel> selectAllHotel() {String sql = "SELECT * FROM HOTELS";
+    public List<HotelModel> selectAllHotel() {
+        String sql = "SELECT * FROM HOTELS";
         return jdbcTemplate.query(sql, mapHotel());
+    }
+
+    //GetHotel
+    public List<HotelModel> selectHotel(int hotelId) {
+        String sql = "SELECT * FROM HOTELS WHERE hotel_id = ?";
+        return jdbcTemplate.query(sql, mapHotel(),hotelId);
     }
 
     //GetImage
@@ -48,6 +55,8 @@ public class HotelRepository {
         String sql = "DELETE FROM HOTELS WHERE hotel_id = ?";
         jdbcTemplate.update(sql,hotelId);
     }
+
+
 
     //Mapper
     private RowMapper<HotelModel> mapHotel() {
