@@ -1,4 +1,4 @@
-package com.singo.Account.Day;
+package com.singo.Day;
 
 import java.sql.Date;
 
@@ -7,6 +7,7 @@ public class DayModel {
     private int dayName;
     private Date dayDate;
     private int dayItineraryId;
+    private int dayHotelId;
 
 
     public DayModel(int dayId, int dayName, Date dayDate, int dayItineraryId) {
@@ -15,6 +16,15 @@ public class DayModel {
         this.dayDate = dayDate;
         this.dayItineraryId = dayItineraryId;
     }
+
+    public DayModel(int dayId, int dayName, Date dayDate, int dayItineraryId, int dayHotelId) {
+        this.dayId = dayId;
+        this.dayName = dayName;
+        this.dayDate = dayDate;
+        this.dayItineraryId = dayItineraryId;
+        this.dayHotelId = dayHotelId;
+    }
+
 
     public int getDayId() {
         return this.dayId;
@@ -46,6 +56,14 @@ public class DayModel {
 
     public void setDayItineraryId(int dayItineraryId) {
         this.dayItineraryId = dayItineraryId;
+    }
+
+    public int getDayHotelId() {
+        return this.dayHotelId;
+    }
+
+    public void setDayHotelId(int dayHotelId) {
+        this.dayHotelId = dayHotelId;
     }
 
 

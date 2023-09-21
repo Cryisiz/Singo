@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.singo.Account.Day.DayService;
+import com.singo.Day.DayService;
 
 @Service
 public class ItineraryService {
@@ -38,7 +38,7 @@ public class ItineraryService {
     //Delete Itinerary
     public void deleteItinerary(int itineraryId){
         itineraryRepository.deleteItinerary(itineraryId);
-        
+
     }
 
     //get All Itinerary

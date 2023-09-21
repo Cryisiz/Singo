@@ -1,4 +1,4 @@
-package com.singo.Account.Day;
+package com.singo.Plan;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,22 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Date;
-import java.util.List;
-
-
 @RestController
-@RequestMapping("/dayController")
+@RequestMapping("/planController")
 @CrossOrigin
-public class DayController {
+public class PlanController {
 
     @Autowired
-    private DayService dayService;
+    private PlanService planService;
 
-
-    //get all day by itineary id
-    @PostMapping("/getAll")
-    public ResponseEntity<List<DayModel>> getAllDay(@RequestParam("dayItineraryId") String dayItineraryId){
-    return ResponseEntity.status(HttpStatus.OK).body(dayService.getAllDay(Integer.parseInt(dayItineraryId)));
+    // add Plan
+    @PostMapping("/addPlan")
+    public void addPlan( @RequestParam("planType") String planType,@RequestParam("planEventId")String planEventId,@RequestParam("planDayId")String planDayId ){
+           planService.addPlan(planType,Integer.parseInt(planEventId),Integer.parseInt(planDayId));
     }
 }

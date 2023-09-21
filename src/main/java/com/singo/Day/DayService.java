@@ -1,4 +1,4 @@
-package com.singo.Account.Day;
+package com.singo.Day;
 
 import java.sql.Date;
 import java.util.List;
@@ -20,5 +20,16 @@ public class DayService {
     //getAll Day
     public List<DayModel> getAllDay(int dayItineraryId){
         return dayRepository.selectAllDay(dayItineraryId);
+    }
+
+    //getDay
+    public DayModel getDay(int dayId){
+        List<DayModel> modelList = dayRepository.selectDay(dayId);
+        return modelList.get(0);
+    }
+
+    //add Hotel
+    public void addDayHotel(int dayId,int hotelId){
+        dayRepository.updateDayHotel(dayId,hotelId);
     }
 }

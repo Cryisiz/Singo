@@ -49,4 +49,9 @@ public class HotelService {
         return hotel.get(0).getHotelImage();
       }
     
+    //getHotel
+    public Stream<HotelModel> getHotel(int hotelId){
+        return hotelRepository.selectHotel(hotelId).stream();
+    }
+    
 }

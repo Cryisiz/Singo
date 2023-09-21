@@ -75,5 +75,16 @@ public class HotelController {
         .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + name + "\"")
         .body(data);
   }
+      //get Hotel by Id
+    @PostMapping("/getHotel")
+    public ResponseEntity<List<HotelModel>> getHotel(@RequestParam("hotelId")String hotelId){
+     List<HotelModel> files = hotelService.getHotel(Integer.parseInt(hotelId)).map(dbFile -> {
+      String fileUri = ServletUriComponentsBuilder
+          .fromCurrentContextPath().path("/hotelController/hotelImage/").path(dbFile.getHotelName()).toUriString();
+            return new HotelModel(dbFile.getHotelId(),dbFile.getHotelName(),dbFile.getHotelStar(),dbFile.getHotelLocation(),
+            dbFile.getHotelPrice(),fileUri,dbFile.getHotelAddress(),dbFile.getHotelDescription(),dbFile.getHotelPhone(),dbFile.getHotelHours());
+    }).collect(Collectors.toList());
+    return ResponseEntity.status(HttpStatus.OK).body(files);
+    }
 }
 
